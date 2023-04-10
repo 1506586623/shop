@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.shop.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.neu.shop.entity.User">
+            <id property="id" column="ID" jdbcType="INTEGER"/>
+            <result property="account" column="ACCOUNT" jdbcType="VARCHAR"/>
+            <result property="password" column="PASSWORD" jdbcType="VARCHAR"/>
+            <result property="phone" column="PHONE" jdbcType="INTEGER"/>
+            <result property="name" column="NAME" jdbcType="VARCHAR"/>
+            <result property="token" column="token" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID,ACCOUNT,PASSWORD,
+        PHONE,NAME,token
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where  ID = #{id,jdbcType=INTEGER} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from user
+        where  ID = #{id,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.neu.shop.entity.User" useGeneratedKeys="true">
+        insert into user
+        ( ID,ACCOUNT,PASSWORD
+        ,PHONE,NAME,token
+        )
+        values (#{id,jdbcType=INTEGER},#{account,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR}
+        ,#{phone,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{token,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.neu.shop.entity.User" useGeneratedKeys="true">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">ID,</if>
+                <if test="account != null">ACCOUNT,</if>
+                <if test="password != null">PASSWORD,</if>
+                <if test="phone != null">PHONE,</if>
+                <if test="name != null">NAME,</if>
+                <if test="token != null">token,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=INTEGER},</if>
+                <if test="account != null">#{account,jdbcType=VARCHAR},</if>
+                <if test="password != null">#{password,jdbcType=VARCHAR},</if>
+                <if test="phone != null">#{phone,jdbcType=INTEGER},</if>
+                <if test="name != null">#{name,jdbcType=VARCHAR},</if>
+                <if test="token != null">#{token,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.neu.shop.entity.User">
+        update user
+        <set>
+                <if test="account != null">
+                    ACCOUNT = #{account,jdbcType=VARCHAR},
+                </if>
+                <if test="password != null">
+                    PASSWORD = #{password,jdbcType=VARCHAR},
+                </if>
+                <if test="phone != null">
+                    PHONE = #{phone,jdbcType=INTEGER},
+                </if>
+                <if test="name != null">
+                    NAME = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="token != null">
+                    token = #{token,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   ID = #{id,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.neu.shop.entity.User">
+        update user
+        set 
+            ACCOUNT =  #{account,jdbcType=VARCHAR},
+            PASSWORD =  #{password,jdbcType=VARCHAR},
+            PHONE =  #{phone,jdbcType=INTEGER},
+            NAME =  #{name,jdbcType=VARCHAR},
+            token =  #{token,jdbcType=VARCHAR}
+        where   ID = #{id,jdbcType=INTEGER} 
+    </update>
+</mapper>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.shop.mapper.EquipmentMapper">
+
+    <resultMap id="BaseResultMap" type="com.neu.shop.entity.Equipment">
+            <result property="equipmentNumber" column="equipmentNumber" jdbcType="VARCHAR"/>
+            <result property="equipmentType" column="equipmentType" jdbcType="VARCHAR"/>
+            <result property="equipmentProduct" column="equipmentProduct" jdbcType="VARCHAR"/>
+            <result property="equipmentWear" column="equipmentWear" jdbcType="VARCHAR"/>
+            <result property="equipmentIntroduction" column="equipmentIntroduction" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        equipmentNumber,equipmentType,equipmentProduct,
+        equipmentWear,equipmentIntroduction
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from equipment
+        where equipmentNumber= #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="getAll" resultType="com.neu.shop.entity.Equipment">
+        select
+        <include refid="Base_Column_List" />
+        from equipment
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from equipment
+        where id= #{equipmentNumber,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert">
+        insert into equipment
+        ( equipmentNumber,equipmentType,equipmentProduct
+        ,equipmentWear,equipmentIntroduction)
+        values (#{equipmentNumber,jdbcType=VARCHAR},#{equipmentType,jdbcType=VARCHAR},#{equipmentProduct,jdbcType=VARCHAR}
+        ,#{equipmentWear,jdbcType=VARCHAR},#{equipmentIntroduction,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective">
+        insert into equipment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="equipmentNumber != null">equipment_number,</if>
+                <if test="equipmentType != null">equipment_type,</if>
+                <if test="equipmentProduct != null">equipment_product,</if>
+                <if test="equipmentWear != null">equipment_wear,</if>
+                <if test="equipmentIntroduction != null">equipment_introduction,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="equipmentNumber != null">#{equipmentNumber,jdbcType=VARCHAR},</if>
+                <if test="equipmentType != null">#{equipmentType,jdbcType=VARCHAR},</if>
+                <if test="equipmentProduct != null">#{equipmentProduct,jdbcType=VARCHAR},</if>
+                <if test="equipmentWear != null">#{equipmentWear,jdbcType=VARCHAR},</if>
+                <if test="equipmentIntroduction != null">#{equipmentIntroduction,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.neu.shop.entity.Equipment">
+        update equipment
+        <set>
+                <if test="equipmentNumber != null">
+                    equipment_number = #{equipmentNumber,jdbcType=VARCHAR},
+                </if>
+                <if test="equipmentType != null">
+                    equipment_type = #{equipmentType,jdbcType=VARCHAR},
+                </if>
+                <if test="equipmentProduct != null">
+                    equipment_product = #{equipmentProduct,jdbcType=VARCHAR},
+                </if>
+                <if test="equipmentWear != null">
+                    equipment_wear = #{equipmentWear,jdbcType=VARCHAR},
+                </if>
+                <if test="equipmentIntroduction != null">
+                    equipment_introduction = #{equipmentIntroduction,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where  
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.neu.shop.entity.Equipment">
+        update equipment
+        set 
+            equipment_number =  #{equipmentNumber,jdbcType=VARCHAR},
+            equipment_type =  #{equipmentType,jdbcType=VARCHAR},
+            equipment_product =  #{equipmentProduct,jdbcType=VARCHAR},
+            equipment_wear =  #{equipmentWear,jdbcType=VARCHAR},
+            equipment_introduction =  #{equipmentIntroduction,jdbcType=VARCHAR}
+        where  
+    </update>
+</mapper>

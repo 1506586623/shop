@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.shop.mapper.ProductMapper">
+
+    <resultMap id="BaseResultMap" type="com.neu.shop.entity.Product">
+            <id property="productId" column="productId" jdbcType="INTEGER"/>
+            <result property="productNo" column="productNo" jdbcType="INTEGER"/>
+            <result property="productName" column="productName" jdbcType="VARCHAR"/>
+            <result property="image" column="image" jdbcType="VARCHAR"/>
+            <result property="productDes" column="productDes" jdbcType="VARCHAR"/>
+            <result property="productType" column="productType" jdbcType="VARCHAR"/>
+            <result property="productPrice" column="productPrice" jdbcType="DOUBLE"/>
+            <result property="stock" column="stock" jdbcType="INTEGER"/>
+            <result property="commit" column="commit" jdbcType="VARCHAR"/>
+            <result property="store" column="store" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        productId,productNo,productName,
+        image,productDes,productType,
+        productPrice,stock,commit,
+        store
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from product
+        where  productId = #{productId,jdbcType=INTEGER}
+    </select>
+    <select id="getAll" resultType="com.neu.shop.entity.Product">
+        select
+        <include refid="Base_Column_List" />
+        from product
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from product
+        where  productId = #{productId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="productId" keyProperty="productId" parameterType="com.neu.shop.entity.Product" useGeneratedKeys="true">
+        insert into product
+        ( productId,productNo,productName
+        ,image,productDes,productType
+        ,productPrice,stock,commit
+        ,store)
+        values (#{productId,jdbcType=INTEGER},#{productNo,jdbcType=INTEGER},#{productName,jdbcType=VARCHAR}
+        ,#{image,jdbcType=VARCHAR},#{productDes,jdbcType=VARCHAR},#{productType,jdbcType=VARCHAR}
+        ,#{productPrice,jdbcType=DOUBLE},#{stock,jdbcType=INTEGER},#{commit,jdbcType=VARCHAR}
+        ,#{store,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="product_id" keyProperty="productId" parameterType="com.neu.shop.entity.Product" useGeneratedKeys="true">
+        insert into product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="productId != null">productId,</if>
+                <if test="productNo != null">productNo,</if>
+                <if test="productName != null">productName,</if>
+                <if test="image != null">image,</if>
+                <if test="productDes != null">productDes,</if>
+                <if test="productType != null">productType,</if>
+                <if test="productPrice != null">productPrice,</if>
+                <if test="stock != null">stock,</if>
+                <if test="commit != null">commit,</if>
+                <if test="store != null">store,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="productId != null">#{productId,jdbcType=INTEGER},</if>
+                <if test="productNo != null">#{productNo,jdbcType=INTEGER},</if>
+                <if test="productName != null">#{productName,jdbcType=VARCHAR},</if>
+                <if test="image != null">#{image,jdbcType=VARCHAR},</if>
+                <if test="productDes != null">#{productDes,jdbcType=VARCHAR},</if>
+                <if test="productType != null">#{productType,jdbcType=VARCHAR},</if>
+                <if test="productPrice != null">#{productPrice,jdbcType=DOUBLE},</if>
+                <if test="stock != null">#{stock,jdbcType=INTEGER},</if>
+                <if test="commit != null">#{commit,jdbcType=VARCHAR},</if>
+                <if test="store != null">#{store,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.neu.shop.entity.Product">
+        update product
+        <set>
+                <if test="productNo != null">
+                    productNo = #{productNo,jdbcType=INTEGER},
+                </if>
+                <if test="productName != null">
+                    productName = #{productName,jdbcType=VARCHAR},
+                </if>
+                <if test="image != null">
+                    image = #{image,jdbcType=VARCHAR},
+                </if>
+                <if test="productDes != null">
+                    productDes = #{productDes,jdbcType=VARCHAR},
+                </if>
+                <if test="productType != null">
+                    productType = #{productType,jdbcType=VARCHAR},
+                </if>
+                <if test="productPrice != null">
+                    productPrice = #{productPrice,jdbcType=DOUBLE},
+                </if>
+                <if test="stock != null">
+                    stock = #{stock,jdbcType=INTEGER},
+                </if>
+                <if test="commit != null">
+                    commit = #{commit,jdbcType=VARCHAR},
+                </if>
+                <if test="store != null">
+                    store = #{store,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   productId = #{productId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.neu.shop.entity.Product">
+        update product
+        set 
+            productNo =  #{productNo,jdbcType=INTEGER},
+            productName =  #{productName,jdbcType=VARCHAR},
+            image =  #{image,jdbcType=VARCHAR},
+            productDes =  #{productDes,jdbcType=VARCHAR},
+            productType =  #{productType,jdbcType=VARCHAR},
+            productPrice =  #{productPrice,jdbcType=DOUBLE},
+            stock =  #{stock,jdbcType=INTEGER},
+            commit =  #{commit,jdbcType=VARCHAR},
+            store =  #{store,jdbcType=VARCHAR}
+        where   productId = #{productId,jdbcType=INTEGER}
+    </update>
+</mapper>
