@@ -1,26 +1,27 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <router-view></router-view>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import {provide} from "vue"
+import * as echarts from "echarts"
+import axios from "axios"
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+
+  },
+  setup(){
+    // provide("名字随便"，“传递的内容”）
+    provide("echarts",echarts)
+    provide("axios",axios)
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body{
+  /*background:url("~@/assets/123.png") top center no-repeat;*/
 }
 </style>

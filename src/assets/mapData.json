@@ -1,0 +1,117 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "区域1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [100, 0],
+            [100, 20],
+            [80, 20],
+            [80, 0],
+            [100, 0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "区域2"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80, 0],
+            [80, 20],
+            [60, 20],
+            [60, 0],
+            [80, 0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "区域3"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [60, 0],
+            [60, 20],
+            [40, 20],
+            [40, 0],
+            [60, 0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "区域4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [40, 0],
+            [40, 20],
+            [20, 20],
+            [20, 0],
+            [40, 0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "区域5"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [20, 0],
+            [20, 20],
+            [0, 20],
+            [0, 0],
+            [20, 0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "区域6"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [100, 20],
+            [100, 40],
+            [0, 40],
+            [0, 20],
+            [20, 20],
+            [20, 30],
+            [80, 30],
+            [80, 20],
+            [100, 20]
+          ]
+        ]
+      }
+    }
+  ]
+}
